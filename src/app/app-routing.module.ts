@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PeopleListComponent } from './people-list/people-list.component';
 import { TestComponent } from './test/test.component';
+import { Page404Component } from './page404/page404.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path:'test',
     component:TestComponent
+  },
+  {
+    path:'**',
+    component:Page404Component
   }
 ];
 

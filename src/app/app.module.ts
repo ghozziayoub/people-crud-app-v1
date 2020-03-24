@@ -10,6 +10,7 @@ import { PeopleListComponent } from './people-list/people-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { TestComponent } from './test/test.component';
+import { Page404Component } from './page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TestComponent } from './test/test.component';
     PeopleListComponent,
     NavbarComponent,
     FooterComponent,
-    TestComponent
+    TestComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,

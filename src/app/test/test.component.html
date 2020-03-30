@@ -11,4 +11,10 @@
     <div *ngIf="booksList.length == 0" class="alert alert-warning">
         no books found
     </div>
+
+    <hr>
+
+    <ul *ngFor="let user of usersList">
+        <li>{{ user.name }}</li>
+    </ul>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-test',
@@ -12,11 +13,21 @@ export class TestComponent implements OnInit {
 
   booksList = [];
 
+  usersList = [];
+
   myCondition = false ;
 
-  constructor() { }
+  constructor(private userService:UserService) { }
 
   ngOnInit(): void {
+    this.userService.getAllUsers().subscribe(
+      result => {
+        this.usersList = result;
+      },
+      error =>{
+        console.log(error);
+      }
+    )
   }
 
   hello(myname:String){

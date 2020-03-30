@@ -2,4 +2,13 @@
     <p>Hello {{ name }}</p>
     <img [src]="imageUrl" alt="formalab logo" width="100px">
     <button (click)="hello(name)" class="btn btn-info">click</button>
+    <hr>
+
+    <ul *ngFor="let bookname of booksList">
+        <li>{{ bookname }}</li>
+    </ul>
+
+    <div *ngIf="booksList.length == 0" class="alert alert-warning">
+        no books found
+    </div>
 </div>

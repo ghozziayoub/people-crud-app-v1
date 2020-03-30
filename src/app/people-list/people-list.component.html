@@ -10,36 +10,26 @@
 
     <div class="row">
         <div class="col">
+            <div *ngIf="peopleList.length == 0" class="alert alert-warning">No people found</div>
             <table class="table">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
+                        <th>Name</th>
+                        <th>Username</th>
                         <th>Phone</th>
                         <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>ali</td>
-                        <td>ben ali</td>
-                        <td>00 216 58 025 369</td>
+                    <tr *ngFor="let person of peopleList">
+                        <th>{{ person.id }}</th>
+                        <td>{{ person.name }}</td>
+                        <td>{{ person.username }}</td>
+                        <td>{{ person.phone }}</td>
                         <td>
                             <button class="btn btn-info">Details</button>
-                            <button class="btn btn-danger mx-3">Delete</button>
-                            <button class="btn btn-warning">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>salah</td>
-                        <td>ben salah</td>
-                        <td>00 216 58 147 258</td>
-                        <td>
-                            <button class="btn btn-info">Details</button>
-                            <button class="btn btn-danger mx-3">Delete</button>
+                            <button class="btn btn-danger mx-3" (click)="delete(person)">Delete</button>
                             <button class="btn btn-warning">Update</button>
                         </td>
                     </tr>

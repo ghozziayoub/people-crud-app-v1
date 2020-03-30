@@ -10,6 +10,10 @@ export class TestComponent implements OnInit {
   name = "Ayoub";
   imageUrl = "assets/images/training.jpg";
 
+  booksList = [];
+
+  myCondition = false ;
+
   constructor() { }
 
   ngOnInit(): void {

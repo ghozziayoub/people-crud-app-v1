@@ -11,21 +11,21 @@
     <div class="row">
         <div class="col">
             <div *ngIf="peopleList.length == 0" class="alert alert-warning">No people found</div>
-            <table class="table">
+            <table *ngIf="peopleList.length > 0" class="table">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Username</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
                         <th>Phone</th>
                         <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let person of peopleList">
-                        <th>{{ person.id }}</th>
-                        <td>{{ person.name }}</td>
-                        <td>{{ person.username }}</td>
+                    <tr *ngFor="let person of peopleList ; let i = index">
+                        <th>{{ i }}</th>
+                        <td>{{ person.firstname }}</td>
+                        <td>{{ person.lastname }}</td>
                         <td>{{ person.phone }}</td>
                         <td>
                             <button class="btn btn-info">Details</button>

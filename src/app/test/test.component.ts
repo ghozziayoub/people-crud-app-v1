@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-test',
@@ -8,30 +8,25 @@ import { UserService } from '../user.service';
 })
 export class TestComponent implements OnInit {
 
-  name = "Ayoub";
-  imageUrl = "assets/images/training.jpg";
+  myForm: FormGroup
 
-  booksList = [];
+  constructor(private fb: FormBuilder) {
 
-  usersList = [];
+    let formControls = {
+      firstname : new FormControl()
+    }
 
-  myCondition = false ;
+    this.myForm = this.fb.group(formControls);
 
-  constructor(private userService:UserService) { }
+  }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe(
-      result => {
-        this.usersList = result;
-      },
-      error =>{
-        console.log(error);
-      }
-    )
+
   }
 
-  hello(myname:String){
-    alert('Hello '+myname);
+  saveUser(){
+    console.log(this.myForm.value);
   }
+
 
 }

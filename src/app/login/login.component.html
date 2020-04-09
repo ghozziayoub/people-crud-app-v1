@@ -1,15 +1,23 @@
 <app-navbar></app-navbar>
 <div class="container my-5">
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp">
+            <div *ngIf="email.touched && email.invalid">
+                <small *ngIf="email.errors.required" class="text-danger">Email is required<br></small>
+                <small *ngIf="email.errors.email" class="text-danger">Invalid Email<br></small>
+            </div>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+            <div *ngIf="password.touched && password.invalid">
+                <small *ngIf="password.errors.required" class="text-danger">Password is required<br></small>
+                <small *ngIf="password.errors.minlength" class="text-danger">password must contain 6 characters at least</small>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
     </form>
 </div>
 <app-footer></app-footer>

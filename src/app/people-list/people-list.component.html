@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col">
             <h1>People List</h1>
-            <button class="btn btn-primary my-3">Add</button>
+            <button class="btn btn-primary my-3" [routerLink]="['/add-user']">Add</button>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
                         <td>
                             <button class="btn btn-info">Details</button>
                             <button class="btn btn-danger mx-3" (click)="delete(person)">Delete</button>
-                            <button class="btn btn-warning">Update</button>
+                            <button class="btn btn-warning" [routerLink]="['/update-user']">Update</button>
                         </td>
                     </tr>
                 </tbody>

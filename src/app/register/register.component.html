@@ -1,18 +1,28 @@
 <app-navbar></app-navbar>
 
 <div class="container my-5">
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="form-row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="firstname">Firstname</label>
-                    <input type="text" name="firstname" id="firstname" class="form-control">
+                    <input type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname">
+                    <div *ngIf="firstname.touched && firstname.invalid">
+                        <small *ngIf="firstname.errors.required" class="text-danger">Firstname is required<br></small>
+                        <small *ngIf="firstname.errors.pattern" class="text-danger">Invalid Firstname<br></small>
+                        <small *ngIf="firstname.errors.minlength" class="text-danger">Firstname must contain two characters at least</small>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="lastname">Lastname</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control">
+                    <input type="text" name="lastname" id="lastname" class="form-control" formControlName="lastname">
+                    <div *ngIf="lastname.touched && lastname.invalid">
+                        <small *ngIf="lastname.errors.required" class="text-danger">Lastname is required<br></small>
+                        <small *ngIf="lastname.errors.pattern" class="text-danger">Invalid Lastname<br></small>
+                        <small *ngIf="lastname.errors.minlength" class="text-danger">Lastname must contain two characters at least</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,13 +31,23 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp">
+                    <div *ngIf="email.touched && email.invalid">
+                        <small *ngIf="email.errors.required" class="text-danger">Email is required<br></small>
+                        <small *ngIf="email.errors.email" class="text-danger">Invalid Email<br></small>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input type="text" name="phone" id="phone" class="form-control">
+                    <input type="text" name="phone" id="phone" class="form-control" formControlName="phone">
+                    <div *ngIf="phone.touched && phone.invalid">
+                        <small *ngIf="phone.errors.required" class="text-danger">Phone is required<br></small>
+                        <small *ngIf="phone.errors.pattern" class="text-danger">Invalid Phone<br></small>
+                        <small *ngIf="phone.errors.minlength" class="text-danger">Phone must contain 8 characters at least</small>
+                        <small *ngIf="phone.errors.maxlength" class="text-danger">Phone must contain a maximum of 13 characters</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,19 +56,26 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+                    <div *ngIf="password.touched && password.invalid">
+                        <small *ngIf="password.errors.required" class="text-danger">Password is required<br></small>
+                        <small *ngIf="password.errors.minlength" class="text-danger">password must contain 6 characters at least</small>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="repeatPassword">Repeat Password</label>
-                    <input type="password" class="form-control" id="repeatPassword">
+                    <input type="password" class="form-control" id="repeatPassword" formControlName="repassword">
+                    <div *ngIf="repassword.touched && repassword.invalid">
+                        <small *ngIf="repassword.errors.required" class="text-danger">Repeat Password is required<br></small>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col">
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
 
             </div>
         </div>

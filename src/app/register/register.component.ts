@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { User } from '../user';
 
 
 @Component({
@@ -58,8 +59,13 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm.value);
 
+    let data = this.registerForm.value;
+
+    let user = new User(data.firstname,data.lastname,data.email,data.phone,data.password);
+
+    console.log(user);
+    
   }
 
 }

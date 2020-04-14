@@ -14,12 +14,12 @@ export class AddUserComponent implements OnInit {
     let formControls = {
       firstname: new FormControl('',[
         Validators.required,
-        Validators.pattern("[a-z .'-]+"),
+        Validators.pattern("[A-Za-z .'-]+"),
         Validators.minLength(2)
       ]),
       lastname: new FormControl('',[
         Validators.required,
-        Validators.pattern("[a-z .'-]+"),
+        Validators.pattern("[A-Za-z .'-]+"),
         Validators.minLength(2)
       ]),
       phone: new FormControl('',[

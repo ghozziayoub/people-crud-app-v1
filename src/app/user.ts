@@ -6,6 +6,7 @@ export class User {
         private email? : String ,
         private phone? : String ,
         private password? : String ,
+        private _id?:String
     ){
 
     }

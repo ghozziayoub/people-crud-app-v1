@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../user.service';
+import { User } from '../user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-user',
@@ -11,7 +15,12 @@ export class UpdateUserComponent implements OnInit {
   
   updateUserForm: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private route:ActivatedRoute,
+    private userService:UserService,
+    private router : Router,
+    private toastr: ToastrService) {
 
     let formControls = {
       firstname: new FormControl('',[
@@ -41,10 +50,42 @@ export class UpdateUserComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    let idUser = this.route.snapshot.params.id;
+    
+    this.userService.getOneUser(idUser).subscribe(
+      res=>{
+        let user = res;
+
+        this.updateUserForm.patchValue({
+          firstname : user.firstname,
+          lastname : user.lastname ,
+          phone : user.phone
+        })
+        
+      },
+      err=>{
+        console.log(err);
+      }
+    )
+    
   }
 
   updateUser() {
-    console.log(this.updateUserForm.value);
+    let data = this.updateUserForm.value;
+    let idUser = this.route.snapshot.params.id;
+    let user = new User(data.firstname,data.lastname,null,data.phone,null,idUser);
+
+    this.userService.updateUser(user).subscribe(
+      res=>{
+        this.toastr.warning(res.message);
+
+        this.router.navigate(['/people-list']);
+      },
+      err=>{
+        console.log(err);
+      }
+    )
 
   }
 

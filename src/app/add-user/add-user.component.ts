@@ -15,7 +15,12 @@ export class AddUserComponent implements OnInit {
 
   addUserForm: FormGroup
 
-  constructor(private fb: FormBuilder, private userSerivce:UserService,private router:Router,private toastr: ToastrService) {
+  constructor(
+    private fb: FormBuilder, 
+    private userSerivce:UserService,
+    private router:Router,
+    private toastr: ToastrService
+    ) {
 
     let formControls = {
       firstname: new FormControl('',[

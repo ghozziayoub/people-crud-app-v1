@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../user';
-
+import { UserService } from '../user.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,12 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private userService:UserService,
+    private router:Router,
+    private toastr: ToastrService
+    ) {
 
     let formControls = {
       firstname: new FormControl('',[
@@ -56,6 +63,12 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    let isLoggedIn = this.userService.isLoggedIn();
+
+    if (isLoggedIn) {
+      this.router.navigate(['/people-list']);
+    } 
   }
 
   register() {
@@ -64,7 +77,15 @@ export class RegisterComponent implements OnInit {
 
     let user = new User(data.firstname,data.lastname,data.email,data.phone,data.password);
 
-    console.log(user);
+    this.userService.registerAdmin(user).subscribe(
+      res=>{
+        this.toastr.success(res.message);
+        this.router.navigate(['/login']);
+      },
+      err=>{
+        console.log(err);
+      }
+    )
     
   }
 

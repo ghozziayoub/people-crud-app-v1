@@ -8,6 +8,7 @@ import { TestComponent } from './test/test.component';
 import { Page404Component } from './page404/page404.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -25,15 +26,18 @@ const routes: Routes = [
   },
   {
     path:'people-list',
-    component:PeopleListComponent
+    component:PeopleListComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'add-user',
-    component:AddUserComponent
+    component:AddUserComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'update-user/:id',
-    component:UpdateUserComponent
+    component:UpdateUserComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'test',
